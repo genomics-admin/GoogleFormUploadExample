@@ -36,8 +36,12 @@ public class MainActivity extends Activity {
 		String col1 = "Hello";
 		String col2 = "World";
 		
-		String data = "entry.1680144410=" + URLEncoder.encode(col1) + "&" + 
-					  "entry.1558298396=" + URLEncoder.encode(col2);
+		try {
+			String data = "entry.1680144410=" + URLEncoder.encode(col1,"UTF-8") + "&" + 
+						  "entry.1558298396=" + URLEncoder.encode(col2,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+            		e.printStackTrace();
+        	}
 		String response = mReq.sendPost(fullUrl, data);
 		Log.i(myTag, response);
 	} 
